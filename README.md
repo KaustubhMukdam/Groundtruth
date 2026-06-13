@@ -1,17 +1,16 @@
-# Groundtruth — AI Match Explainer for Football Fans
+# Groundtruth   AI Match Explainer for Football Fans
 
-> Built for the IBM SkillsBuild AI Builders Challenge · June 2026  
-> Solo project · Built by a CS/DS student in 17 days between a Kaggle course and a deadline
+> Built for the IBM SkillsBuild AI Builders Challenge
 
 ---
 
 ## What is this?
 
-Ever watched a World Cup match and thought — *why was that offside? What exactly is a high press? Why did the ref give a yellow card for that?*
+Ever watched a World Cup match and thought  *why was that offside? What exactly is a high press? Why did the ref give a yellow card for that?*
 
-Groundtruth is a conversational AI that answers those questions in plain English. You ask about a match — tactics, referee decisions, player stats, team strategy — and it explains it back to you like a knowledgeable friend who actually understands football.
+Groundtruth is a conversational AI that answers those questions in plain English. You ask about a match  tactics, referee decisions, player stats, team strategy  and it explains it back to you like a knowledgeable friend who actually understands football.
 
-It's not a stats dashboard. It's not a prediction tool. It's an **explainer** — built specifically for fans who want to understand the game better, not just watch it.
+It's not a stats dashboard. It's not a prediction tool. It's an **explainer**  built specifically for fans who want to understand the game better, not just watch it.
 
 <!-- ---
 
@@ -41,7 +40,7 @@ IBM Granite LLM generates a plain-English explanation
 You get an answer that actually makes sense
 ```
 
-The key thing: every answer includes **why** — not just what happened, but the tactical or rule-based reasoning behind it. That's the "explainability" part. IBM Granite is specifically good at this kind of structured, grounded reasoning.
+The key thing: every answer includes **why**  not just what happened, but the tactical or rule-based reasoning behind it. That's the "explainability" part. IBM Granite is specifically good at this kind of structured, grounded reasoning.
 
 ---
 
@@ -50,7 +49,7 @@ The key thing: every answer includes **why** — not just what happened, but the
 | Layer | Technology | Why |
 |-------|-----------|-----|
 | LLM | IBM Granite (via watsonx.ai) | Required for challenge + good at structured explanations |
-| Pipeline | Langflow | Visual agent pipeline — easy to reason about and show in demo |
+| Pipeline | Langflow | Visual agent pipeline  easy to reason about and show in demo |
 | Football data | football-data.org API (free) | Live + historical World Cup match data |
 | Backend | FastAPI (Python) | Lightweight, async, great for AI APIs |
 | Frontend | Streamlit | Fastest way to build a clean chat UI solo |
@@ -121,24 +120,24 @@ Groundtruth/
 
 ## IBM tools used
 
-- **IBM Granite** — the core LLM for generating explanations. Specifically using `granite-13b-instruct` via the watsonx.ai API. Chosen because it's strong at instruction-following and produces structured, factual explanations rather than hallucinated summaries.
-- **Langflow** — the visual pipeline that orchestrates the full flow: user input → context fetch → prompt construction → Granite → response. The Langflow JSON export is in `/langflow/` — you can import it directly.
+- **IBM Granite**  the core LLM for generating explanations. Specifically using `granite-13b-instruct` via the watsonx.ai API. Chosen because it's strong at instruction-following and produces structured, factual explanations rather than hallucinated summaries.
+- **Langflow**  the visual pipeline that orchestrates the full flow: user input → context fetch → prompt construction → Granite → response. The Langflow JSON export is in `/langflow/`  you can import it directly.
 
 ---
 
 ## What I learned building this
 
-This was my first time using IBM's AI stack. Langflow took about 2 hours to get comfortable with — the visual flow builder is genuinely useful for understanding data flow. Granite's instruction-following is solid, especially when you give it structured context (match data + user question) rather than open-ended prompts.
+This was my first time using IBM's AI stack. Langflow took about 2 hours to get comfortable with  the visual flow builder is genuinely useful for understanding data flow. Granite's instruction-following is solid, especially when you give it structured context (match data + user question) rather than open-ended prompts.
 
-The hardest part was prompt engineering for explainability — getting Granite to explain *why* something happened, not just describe it. The solution was structuring the context as: `[Rule/Tactic name] + [What happened in the match] + [Explain to a fan who's curious but not expert]`.
+The hardest part was prompt engineering for explainability  getting Granite to explain *why* something happened, not just describe it. The solution was structuring the context as: `[Rule/Tactic name] + [What happened in the match] + [Explain to a fan who's curious but not expert]`.
 
 ---
 
 ## Challenges and honest limitations
 
-- The football-data.org free tier has rate limits — the app will be slow under heavy traffic
-- Granite explanations are only as good as the match data fed to it — if the API doesn't have granular event data, the explanation is general
-- Offside explanations are particularly hard — VAR decisions involve mm-level precision that no public API captures
+- The football-data.org free tier has rate limits  the app will be slow under heavy traffic
+- Granite explanations are only as good as the match data fed to it  if the API doesn't have granular event data, the explanation is general
+- Offside explanations are particularly hard  VAR decisions involve mm-level precision that no public API captures
 
 ---
 
@@ -154,7 +153,7 @@ The hardest part was prompt engineering for explainability — getting Granite t
 
 Built solo over ~2 weeks while simultaneously completing the Google x Kaggle 5-Day AI Agents course. Most of the backend was written between 9pm and midnight. The Langflow pipeline was designed on paper first, which saved a lot of debugging time.
 
-If you're a judge: thank you for your time. The demo video shows the full working flow — please watch it before reading the code.
+If you're a judge: thank you for your time. The demo video shows the full working flow  please watch it before reading the code.
 
 If you're a student looking at this after the challenge: the `/docs` folder has every design and planning document I created. Steal the system, it works.
 
