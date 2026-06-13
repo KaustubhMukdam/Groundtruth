@@ -1,7 +1,6 @@
 # Groundtruth — AI Match Explainer for Football Fans
 
-> Built for the IBM SkillsBuild AI Builders Challenge · June 2026  
-> Solo project · Built by a CS/DS student in 17 days between a Kaggle course and a deadline
+> Built for the IBM SkillsBuild AI Builders Challenge
 
 ---
 
