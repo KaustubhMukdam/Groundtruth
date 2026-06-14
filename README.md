@@ -1,4 +1,4 @@
-# Groundtruth   AI Match Explainer for Football Fans
+# Groundtruth: AI Agent for Football Fans
 
 > Built for the IBM SkillsBuild AI Builders Challenge
 
@@ -6,41 +6,51 @@
 
 ## What is this?
 
-Ever watched a World Cup match and thought  *why was that offside? What exactly is a high press? Why did the ref give a yellow card for that?*
+Ever watched a World Cup match and thought, *why was that offside? What exactly is a high press? Why did the ref pull out a yellow card for that challenge?*
 
-Groundtruth is a conversational AI that answers those questions in plain English. You ask about a match  tactics, referee decisions, player stats, team strategy  and it explains it back to you like a knowledgeable friend who actually understands football.
+Groundtruth is an **AI agent** that answers those questions in plain English. You ask about a match, tactics, referee decisions, player stats, team strategy, and the agent autonomously decides which data to fetch, grounds its answer in real match facts, then checks itself to make sure it explained *why*, not just *what*.
 
-It's not a stats dashboard. It's not a prediction tool. It's an **explainer**  built specifically for fans who want to understand the game better, not just watch it.
+It's not a stats dashboard. It's not a prediction tool. It's an **explainability agent**, built specifically for fans who want to understand the game, not just watch it.
 
 <!-- ---
 
 ## Demo
 
-> 📹 [Watch the 3-minute demo →](#) *(link updated after submission)*
+> 📹 [Watch the 3-minute demo →](#) *(updated after submission)*
 
-**Example questions you can ask:**
+**Try asking:**
 - "Why was Mbappé's goal disallowed in the 67th minute?"
 - "How did Morocco's defensive block work against Spain?"
-- "What does 'pressing triggers' mean and did India use them?"
-- "Explain the offside trap India used in the second half" -->
+- "What is an offside trap and did India use it?"
+- "Why did the referee show a straight red card there?" -->
 
 ---
 
-## How it works
+## How the agent works
+
+Groundtruth is a 3-step agentic pipeline, not a chatbot with a fixed answer path:
 
 ```
 You ask a question
         ↓
-Langflow pipeline routes it
+IBM Granite, Tool Selector
+"Which tool should I call for this question?"
+    ├── get_match_events   (goals, cards, VAR decisions, timeline)
+    ├── get_player_stats   (goals, assists, form, match history)
+    └── get_rule_definition (offside law, VAR protocol, card rules)
         ↓
-Football Data API pulls match context (live + historical)
+Tool is called → real match data returned
         ↓
-IBM Granite LLM generates a plain-English explanation
+IBM Granite, Explanation Generator
+Generates plain-English explanation grounded in the tool output
         ↓
-You get an answer that actually makes sense
+IBM Granite, Self-Critique
+"Did I explain WHY, or just WHAT? If just WHAT, revise."
+        ↓
+Final answer → You
 ```
 
-The key thing: every answer includes **why**  not just what happened, but the tactical or rule-based reasoning behind it. That's the "explainability" part. IBM Granite is specifically good at this kind of structured, grounded reasoning.
+The key difference from a chatbot: **Granite decides what to do next**. It picks the tool. It checks its own work. If the explanation only describes what happened without explaining why, it rewrites itself. That's the agentic behaviour.
 
 ---
 
@@ -48,12 +58,20 @@ The key thing: every answer includes **why**  not just what happened, but the ta
 
 | Layer | Technology | Why |
 |-------|-----------|-----|
-| LLM | IBM Granite (via watsonx.ai) | Required for challenge + good at structured explanations |
-| Pipeline | Langflow | Visual agent pipeline  easy to reason about and show in demo |
-| Football data | football-data.org API (free) | Live + historical World Cup match data |
-| Backend | FastAPI (Python) | Lightweight, async, great for AI APIs |
-| Frontend | Streamlit | Fastest way to build a clean chat UI solo |
-| Deployment | Render (free tier) | Simple deployment, stays free |
+| LLM | IBM Granite (`granite-13b-instruct-v2`) | Required for challenge + excellent at structured instruction-following; reliable for self-critique |
+| Agent pipeline | Langflow | Visual agentic pipeline, tool nodes, decision routing, exportable JSON for judges |
+| Football data | football-data.org API (free) | Live + historical World Cup match data, clean REST API |
+| Rules data | Local JSON (`football_rules.json`) | FIFA laws don't change mid-tournament; local = zero latency |
+| Backend | FastAPI (Python 3.11) | Async, lightweight, automatic OpenAPI docs |
+| Frontend | Streamlit | Fastest way to ship a working chat UI solo in a hackathon |
+| Deployment | Render (free tier) | Simple Python deployment, no Docker needed |
+
+---
+
+## IBM tools used
+
+- **IBM Granite**, `granite-13b-instruct-v2` via watsonx.ai. Used in 3 places: tool selection, explanation generation, and self-critique. Chosen for its reliable instruction-following behaviour on structured prompts.
+- **Langflow**, Visual agentic pipeline that orchestrates all 3 Granite calls + tool nodes. The full pipeline is exported as `/langflow/Groundtruth_agent_flow.json`, importable directly.
 
 ---
 
@@ -61,9 +79,9 @@ The key thing: every answer includes **why**  not just what happened, but the ta
 
 **You'll need:**
 - Python 3.11+
-- IBM watsonx.ai API key (free tier available via IBM SkillsBuild)
-- football-data.org API key (free)
-- Langflow installed
+- IBM watsonx.ai API key + Project ID (free via IBM SkillsBuild)
+- football-data.org API key (free registration)
+- Langflow installed locally
 
 ```bash
 # Clone the repo
@@ -75,19 +93,19 @@ pip install -r requirements.txt
 
 # Set environment variables
 cp .env.example .env
-# → Fill in your IBM_API_KEY and FOOTBALL_API_KEY in .env
+# Fill in IBM_API_KEY, IBM_PROJECT_ID, FOOTBALL_API_KEY, LANGFLOW_URL in .env
 
-# Start Langflow
+# Start Langflow (in a separate terminal)
 langflow run
+# Import Groundtruth_agent_flow.json from the Langflow UI
+# Copy the pipeline's API endpoint URL → paste as LANGFLOW_URL in .env
 
-# In a separate terminal, start the backend
+# Start the backend
 uvicorn backend.main:app --reload
 
-# Open the UI
+# Start the frontend
 streamlit run frontend/app.py
 ```
-
-That's it. No Docker, no complex setup. It should work on any machine.
 
 ---
 
@@ -96,67 +114,61 @@ That's it. No Docker, no complex setup. It should work on any machine.
 ```
 Groundtruth/
 ├── backend/
-│   ├── main.py              # FastAPI entry point
+│   ├── main.py                      # FastAPI entry point
 │   ├── routers/
-│   │   └── chat.py          # /ask endpoint
+│   │   ├── chat.py                  # POST /ask, main agent endpoint
+│   │   └── matches.py               # GET /matches, match list for UI
 │   ├── services/
-│   │   ├── granite.py       # IBM Granite integration
-│   │   ├── football_api.py  # football-data.org client
-│   │   └── explainer.py     # Core explanation logic
+│   │   ├── langflow_client.py       # Calls Langflow pipeline via REST
+│   │   ├── football_api.py          # football-data.org client + cache
+│   │   └── rules_loader.py          # Loads local football_rules.json
 │   └── models/
-│       └── schemas.py       # Pydantic request/response models
+│       └── schemas.py               # AskRequest, AskResponse, AgentTrace
 ├── frontend/
-│   └── app.py               # Streamlit chat interface
+│   └── app.py                       # Streamlit chat UI
 ├── langflow/
-│   └── Groundtruth_flow.json  # Exportable Langflow pipeline
-├── docs/                    # Full project documentation
-├── tests/
-├── .env.example
-├── requirements.txt
-└── README.md
+│   └── Groundtruth_agent_flow.json    # Full Langflow pipeline, import this
+├── data/
+│   └── football_rules.json          # FIFA rules + tactic definitions
+├── docs/                            # Full project documentation
+└── tests/
 ```
 
 ---
 
-## IBM tools used
+## What the self-critique actually does
 
-- **IBM Granite**  the core LLM for generating explanations. Specifically using `granite-13b-instruct` via the watsonx.ai API. Chosen because it's strong at instruction-following and produces structured, factual explanations rather than hallucinated summaries.
-- **Langflow**  the visual pipeline that orchestrates the full flow: user input → context fetch → prompt construction → Granite → response. The Langflow JSON export is in `/langflow/`  you can import it directly.
+This is the part I'm most proud of. After Granite generates an explanation, it runs a second pass with this check:
+
+> *"Does this explain WHY the decision was made? Is it grounded in specific match facts? Would a fan who didn't watch the match understand it? If any answer is NO, rewrite."*
+
+On tactic and referee questions, this revision step measurably improves the output. The before/after examples are in `docs/experiment_log.md`.
+
+---
+
+## Honest limitations
+
+- football-data.org free tier has a 10 calls/minute rate limit, first-time requests for uncached matches will be slightly slower
+- No VAR frame-by-frame detail in the API, offside VAR explanations describe the process correctly but can't show the exact millimetre measurement
+- 3 Granite calls per question = 5–7 second response time on the free tier. Noted in demo video.
+- Render free tier sleeps after 15 minutes, first request after sleep takes ~30 seconds
 
 ---
 
 ## What I learned building this
 
-This was my first time using IBM's AI stack. Langflow took about 2 hours to get comfortable with  the visual flow builder is genuinely useful for understanding data flow. Granite's instruction-following is solid, especially when you give it structured context (match data + user question) rather than open-ended prompts.
+First time with IBM's AI stack. Langflow was surprisingly fast to pick up, the visual pipeline makes it easy to see exactly where data is flowing and which Granite call is doing what. The self-critique prompt took the most iteration, getting Granite to check against "WHY vs WHAT" reliably required about 8 prompt versions.
 
-The hardest part was prompt engineering for explainability  getting Granite to explain *why* something happened, not just describe it. The solution was structuring the context as: `[Rule/Tactic name] + [What happened in the match] + [Explain to a fan who's curious but not expert]`.
-
----
-
-## Challenges and honest limitations
-
-- The football-data.org free tier has rate limits  the app will be slow under heavy traffic
-- Granite explanations are only as good as the match data fed to it  if the API doesn't have granular event data, the explanation is general
-- Offside explanations are particularly hard  VAR decisions involve mm-level precision that no public API captures
-
----
-
-## What's next (post-challenge)
-
-- Add support for player comparison ("Was Neymar's passing better than in 2022?")
-- WhatsApp integration so fans can ask from their phones during a match
-- Hindi/regional language support for Indian fans
+I'm also a big fan of the Streamlit chat UI, it's so fast and easy to prototype a working chatbot in a hackathon.
 
 ---
 
 ## About
 
-Built solo over ~2 weeks while simultaneously completing the Google x Kaggle 5-Day AI Agents course. Most of the backend was written between 9pm and midnight. The Langflow pipeline was designed on paper first, which saved a lot of debugging time.
+The `/docs` folder has every planning and design document created for this project: PRD, architecture, experiment log, evaluation rubric, prompt iteration notes. Built following my own developer documentation system.
 
-If you're a judge: thank you for your time. The demo video shows the full working flow  please watch it before reading the code.
-
-If you're a student looking at this after the challenge: the `/docs` folder has every design and planning document I created. Steal the system, it works.
+If you're a judge: the demo video shows the complete agent flow including the tool-selection step and self-critique revision. The Langflow pipeline JSON is in `/langflow/` and imports in under 2 minutes.
 
 ---
 
-*IBM SkillsBuild AI Builders Challenge · June 2026 · India*
+*IBM SkillsBuild AI Builders Challenge · "AI Inside the Match" · June 2026 · India*
