@@ -1,0 +1,3 @@
+# Langflow pipeline export placeholder.
+# The full agentic Langflow pipeline JSON will be exported here in Phase 2.
+# Once built, import this file into Langflow UI: New Flow → Import → select this file.

@@ -1,0 +1,172 @@
+{
+  "offside": {
+    "short_definition": "A player is offside if they are nearer to the opponent's goal line than both the ball and the second-last opponent at the moment the ball is played to them.",
+    "when_VAR_reviews": "VAR reviews offside when a goal is scored or in the build-up to a goal. Semi-automated offside technology (SAOT) draws skeletal body-part lines at the exact frame the ball is played. The relevant body part is whichever part of the body (other than the hand or arm) can legally score a goal.",
+    "common_misconceptions": [
+      "You cannot be offside from a goal kick, corner kick, or throw-in — these are exempt restarts.",
+      "Simply being in an offside position is not an offence. You must become involved in active play (touching the ball, interfering with an opponent, or gaining an advantage).",
+      "The goalkeeper counts as one of the two defenders needed to keep a player onside.",
+      "It is the position at the moment the ball is PLAYED, not when it is received, that counts.",
+      "A player level with the last defender is onside, not offside."
+    ],
+    "plain_english": "Offside is about giving attackers a fair start, not a sneaky head-start. When a teammate passes the ball to you, at that exact moment you need at least one outfield defender (not counting the keeper) between you and the goal. If you're ahead of them — even by a shoulder — you're offside. VAR can now measure this down to the millimetre, which is why celebrations sometimes get cut short even when the ball looked perfectly fine to the naked eye. It feels harsh, but the rule exists so defenders don't have to play mind games about how far forward to stand."
+  },
+
+  "yellow_card": {
+    "short_definition": "A caution shown by the referee for unsporting behaviour, persistent infringement, dissent, delaying restart, failure to respect required distance, or entering/leaving the field without permission.",
+    "when_VAR_reviews": "VAR can recommend a yellow card review if the referee missed a bookable offence on-field, or if the card was issued to the wrong player. The referee always makes the final decision.",
+    "common_misconceptions": [
+      "A yellow card is not just for fouls — simulation (diving), time-wasting, and arguing with the referee are all yellow-card offences.",
+      "Two yellow cards in the same match = automatic red card and ejection from the field.",
+      "Yellow cards are cumulative across the group stage — collecting a set number (usually 2) triggers a one-match ban."
+    ],
+    "plain_english": "A yellow card is the referee's formal warning — like being put on notice. Get two in the same game and you're off the pitch immediately (that's the double-yellow red card rule). But they also follow players across matches: if a player keeps picking up bookings during the tournament, they might miss a key game through suspension even if they played well. Referees dish them out for dirty fouls, time-wasting, diving, and giving them grief. It's not just about the foul — it's about behaviour."
+  },
+
+  "red_card": {
+    "short_definition": "A sending-off issued for serious foul play, violent conduct, spitting, biting, deliberate handball denying a goal, denying a clear goal-scoring opportunity with a foul, or receiving two yellow cards in the same match.",
+    "when_VAR_reviews": "VAR reviews red card incidents when: (a) a red card was given but may not deserve it, (b) a red card offence was missed entirely. For goal-denying offences, the position of other defenders is assessed to confirm whether the foul truly denied a clear goal-scoring opportunity.",
+    "common_misconceptions": [
+      "Not every foul that stops a goal is a red card — the referee considers whether other defenders could have intercepted. This is the 'DOGSO' assessment (Denying an Obvious Goal-Scoring Opportunity).",
+      "A red card means the player's team plays with 10 men for the rest of the match — no substitute can come on to replace them.",
+      "The player is also suspended for at least the next match. Serious offences carry longer bans."
+    ],
+    "plain_english": "A red card is the harshest punishment a referee can hand out — the player walks, their team finishes the match shorthanded, and they miss at least the next game. Straight reds are for the worst stuff: a brutal tackle that endangers someone, a punch, a deliberate handball to stop a certain goal, or denying a player who was clean through on goal. VAR is particularly active here because the stakes are so high. A wrong red card can decide a World Cup match, so referees and VAR work together to get these calls right."
+  },
+
+  "VAR": {
+    "short_definition": "Video Assistant Referee — a system where a team of video officials review specific match-changing incidents from a dedicated room, communicating with the on-field referee who makes the final decision.",
+    "when_VAR_reviews": "VAR only intervenes for four categories of 'clear and obvious errors': (1) goals and the build-up to goals, (2) penalty decisions, (3) direct red card incidents, (4) mistaken identity when giving a card. VAR does NOT review yellow cards (except for wrong identity) or general foul play outside these four categories.",
+    "common_misconceptions": [
+      "VAR does not replace the referee — it can only flag a 'clear and obvious error'. Close calls stay with the on-field referee's original decision.",
+      "VAR cannot be triggered by a team or a player — only the VAR team or referee can initiate a review.",
+      "The referee goes to a pitch-side monitor (the 'RRA') to review the footage themselves before changing a decision.",
+      "VAR does not review every incident — only the four defined categories."
+    ],
+    "plain_english": "VAR is like having a team of video officials watching every angle in a booth while the game is being played. They're not there to nitpick everything — they only step in if the referee has made a clear, obvious mistake on four specific types of decision: goals, penalties, red cards, and giving a card to the wrong player. When VAR spots something, they tell the referee, who can either accept the recommendation or go watch the clip themselves on a pitch-side screen. It has made big calls more accurate, but it's also slowed the game down — and because it can only overturn 'clear and obvious' errors, some decisions still feel wrong even after a review."
+  },
+
+  "penalty": {
+    "short_definition": "A direct free kick taken from the penalty spot (11 metres / 12 yards from goal), awarded when a player commits a foul inside their own penalty area that would constitute a direct free kick elsewhere on the pitch.",
+    "when_VAR_reviews": "VAR reviews all penalty incidents — both penalties given (to check if the foul actually occurred inside the area) and penalties missed (to check if a foul that should be a penalty was ignored). Handball inside the area is specifically reviewed for whether it was deliberate or accidental.",
+    "common_misconceptions": [
+      "Only fouls inside the penalty area (the 18-yard box) result in a penalty — the same foul outside the box is just a free kick.",
+      "A penalty does not have to be a foul by a defender — if an attacker fouls a defender inside their own box, the defending team gets the penalty.",
+      "The goalkeeper must stay on the goal line until the kick is taken. Encroachment (stepping off the line early) can lead to a retake.",
+      "An accidental handball inside the box is not automatically a penalty — intent and position of the hand/arm are assessed."
+    ],
+    "plain_english": "A penalty is the closest thing to a free goal in football — a one-on-one from 12 yards, with only the goalkeeper to beat. Referees award them when a foul happens inside the penalty box that would have been a free kick anywhere else on the pitch: tripping, holding, pushing, or deliberate handball. The tricky part for fans is understanding that the location of the foul is what matters, not how bad the foul was. A tiny nudge inside the box is a penalty; a brutal challenge three yards outside is just a free kick. VAR reviews all penalty calls because getting them right matters so much — they change matches."
+  },
+
+  "foul": {
+    "short_definition": "An infringement of the Laws of the Game — typically careless, reckless, or using excessive force against an opponent — that results in a direct or indirect free kick.",
+    "when_VAR_reviews": "VAR does not review general fouls unless they result in a penalty, a red card, or a goal being scored from the resulting play.",
+    "common_misconceptions": [
+      "Not all physical contact is a foul — shoulder-to-shoulder challenges and jostling for position are legal if both players have equal access to the ball.",
+      "Playing the ball first does not automatically make a challenge legal — if you also foul the player after getting the ball, it can still be a foul.",
+      "Simulation (diving / faking a foul) is itself an offence punishable by a yellow card.",
+      "Indirect free kicks (for obstruction, dangerous play, etc.) cannot score directly — the ball must touch another player before entering the net."
+    ],
+    "plain_english": "A foul is when a player breaks the rules by going too roughly at an opponent — tripping them, pushing them, jumping into them, or kicking them. Not every collision is a foul; football is a contact sport and shoulder charges and jostling for the ball are part of the game. The key questions the referee asks are: was it careless (just a free kick), reckless (free kick + possibly a yellow card), or excessive force (straight red card)? Diving to win a free kick is also a foul — but against the diver. Referees are getting better at spotting simulation, and VAR can flag it for a booking."
+  },
+
+  "handball": {
+    "short_definition": "When the ball touches a player's hand or arm in a way that the Laws deem an offence — assessed based on whether the contact was deliberate, whether the hand/arm was in an unnatural position, and whether it directly led to a goal or attacking opportunity.",
+    "when_VAR_reviews": "VAR reviews handball incidents when: (a) a goal is scored directly or immediately after a handball by the attacking team, (b) a penalty is given or denied for handball. VAR uses multiple camera angles to determine the position and movement of the hand/arm at the moment of contact.",
+    "common_misconceptions": [
+      "Accidental handball is NOT automatically an offence — the handball laws changed in 2019 and again in 2022. Accidental contact is judged on whether the arm was in an 'unnatural position'.",
+      "If a goal is scored directly from a player's handball — even accidental — the goal is disallowed.",
+      "The shoulder is NOT part of the hand/arm for handball purposes — contact on the shoulder above the armpit line is not handball.",
+      "Handball from a defender in the build-up to a goal does not automatically disallow the goal — only handball immediately before the goal counts."
+    ],
+    "plain_english": "Handball is one of football's most confusing rules because it changed significantly in recent years. The old rule was simple: ball hits hand = foul. The new rule asks: was it deliberate, and was the arm in a weird position that made the contact more likely? If a player's arm is flailing out like a wing and the ball hits it, that's probably handball even if it wasn't intentional. But if a player's arm is tucked in and the ball hits it from close range, that might be accidental and legal. The key exception: if a player — even accidentally — touches the ball with their hand and then a goal is immediately scored, the goal is ruled out. This catches a lot of fans off-guard."
+  },
+
+  "high_press": {
+    "short_definition": "A defensive tactic where the team without the ball applies intense pressure on the opposition high up the pitch (in or near the opposition's own half) immediately after losing possession, aiming to win the ball back quickly in a dangerous position.",
+    "when_VAR_reviews": "Not applicable — high press is a tactic, not a rule decision.",
+    "common_misconceptions": [
+      "High press does not mean just running hard — it requires coordinated positioning so players cut off passing lanes while others close down the ball-carrier.",
+      "A high press is physically exhausting and often cannot be maintained for a full 90 minutes — teams that press high typically rely on early goals or fresh legs from substitutes.",
+      "Pressing traps are often deliberately set: one player shows the ball-carrier a specific direction while teammates position to intercept the pass."
+    ],
+    "plain_english": "A high press is when a team decides to hunt the ball in the opponent's own half rather than dropping back to defend. Think of it as a calculated ambush — when the other team's goalkeeper or defenders have the ball, the attacking team swarms them immediately, trying to force a rushed mistake or win the ball in a dangerous spot close to their goal. Teams like Klopp's Liverpool and Guardiola's Manchester City made this famous. When it works, it creates chaos and goals. When it doesn't — when the pressing team gets played through — they're suddenly exposed at the back with players out of position."
+  },
+
+  "offside_trap": {
+    "short_definition": "A defensive tactic where the defensive line deliberately steps up in unison at the moment a ball is played, aiming to leave an attacker in an offside position.",
+    "when_VAR_reviews": "Not applicable — offside trap is a tactic. If successful, VAR may be invoked to confirm the offside decision (see: offside rule).",
+    "common_misconceptions": [
+      "The offside trap is high-risk — if one defender fails to step up in time, the attacker is through on goal.",
+      "It requires all defenders to move simultaneously and read the pass — a split-second delay from one player breaks the trap.",
+      "The offside trap does NOT guarantee an offside call — the attacker only has to receive the ball in an onside position to be legal."
+    ],
+    "plain_english": "The offside trap is a high-stakes team move where the defenders all step forward together at the exact moment the ball is played forward, trying to catch the attacker offside. When it works, the attacker is suddenly stranded behind the ball and the defence wins a free kick without even making a tackle. When it fails — when the defenders don't all step up at the same moment, or the pass is timed perfectly — the attacker is clean through on goal with no one back to stop them. It's a gamble, a chess move, and when a team pulls it off perfectly, the crowd goes mad. Teams with a high defensive line use it constantly to compress space."
+  },
+
+  "false_nine": {
+    "short_definition": "A tactical role where a player wearing the traditional centre-forward number drops deep into midfield to create space behind them and draw defenders out of position, rather than staying in the penalty area as a target striker.",
+    "when_VAR_reviews": "Not applicable — false nine is a tactical role, not a rule decision.",
+    "common_misconceptions": [
+      "A false nine is not a second striker — they typically operate in the same zone as a number 10 (attacking midfielder), dropping into the midfield third.",
+      "The space the false nine creates is for other players (wingers, second runners) to exploit, not necessarily to score themselves.",
+      "Not every dropping striker is a false nine — the role requires specific positional and pressing responsibilities that differ from a traditional 10."
+    ],
+    "plain_english": "The false nine is one of football's cleverest tricks. Instead of having a big striker waiting in the penalty box, the false nine drops back into midfield — but they're still wearing the number 9 and supposed to be the centre forward. This creates a problem for the opposition defenders: do they follow the striker into midfield (leaving a gap behind them) or stay in position (letting the striker receive the ball with space and time)? Messi played as a false nine to perfection under Guardiola. It works best when the team's wingers can make late runs into the space the dropping striker vacates. It confuses defences built around man-marking a traditional target man."
+  },
+
+  "gegenpressing": {
+    "short_definition": "An aggressive pressing tactic (German: 'counter-pressing') where a team immediately and collectively presses the opponent to win back the ball within seconds of losing possession, rather than transitioning into a defensive shape.",
+    "when_VAR_reviews": "Not applicable — gegenpressing is a tactic, not a rule decision.",
+    "common_misconceptions": [
+      "Gegenpressing is not the same as a high press — gegenpressing specifically refers to the immediate reaction within 5–10 seconds of losing possession, wherever on the pitch it occurs.",
+      "It requires all players to be mentally and physically committed to pressing immediately — one player jogging back instead of pressing breaks the chain.",
+      "Gegenpressing was popularised by Jürgen Klopp at Borussia Dortmund and Liverpool — he describes winning the ball back immediately as 'the best playmaker in the world.'"
+    ],
+    "plain_english": "Gegenpressing is the chaos theory of football tactics. The moment your team loses the ball, everyone — immediately, without thinking — presses the player who has it. The idea is that the opposing team is disorganised in the exact seconds after they win the ball: their players aren't in position, their shape is wrong, they're mentally switching from defending to attacking. If you press them immediately, you catch them in transition and win the ball back before they can get set. Klopp's teams have done this brilliantly: instead of retreating and organising, they swarm the ball instantly and often win it back in dangerous positions. It's exhausting and requires total commitment from every player."
+  },
+
+  "parking_the_bus": {
+    "short_definition": "An informal term for an extreme defensive strategy where a team deploys nearly all players behind the ball in a compact low block, prioritising defensive solidity and preventing goals over attacking ambition.",
+    "when_VAR_reviews": "Not applicable — parking the bus is a tactical description, not a rule decision.",
+    "common_misconceptions": [
+      "Parking the bus is a legitimate tactical choice, not just cowardice — for an underdog team facing a stronger opponent, defending deep and hitting on the counter is a rational and often effective strategy.",
+      "A deep defensive block does not mean the team won't attack — counter-attacks and set pieces remain offensive weapons.",
+      "Teams that park the bus often absorb pressure well and can frustrate opponents into making mistakes."
+    ],
+    "plain_english": "Parking the bus means the team has decided their best chance of getting a result is to defend as deep and as compactly as possible — everyone behind the ball, no space for the opposition to play through, and hope to either hold out for 0-0 or nick something on the counter. It was famously described this way when Mourinho's Chelsea did it at Tottenham. For fans of the attacking team, it's frustrating to watch. For fans of the defending team — especially if they're a clear underdog — watching your team successfully hold off a stronger opponent with organised defending is genuinely thrilling. It's chess, not pretty football, but it works."
+  },
+
+  "4-3-3": {
+    "short_definition": "A formation with four defenders (full-backs and centre-backs), three central midfielders, and three forwards (typically one centre-forward and two wide forwards or wingers).",
+    "when_VAR_reviews": "Not applicable — formations are tactics, not rule decisions.",
+    "common_misconceptions": [
+      "The 4-3-3 shape on paper looks fixed — in practice, it constantly shifts depending on which phase of play the team is in (possession vs. pressing vs. defending).",
+      "The wide forwards in a 4-3-3 often cut inside rather than running the line, creating overloads in central areas.",
+      "The full-backs in a 4-3-3 frequently push very high to provide width, effectively making it a 2-3-5 in attack."
+    ],
+    "plain_english": "The 4-3-3 is one of the most popular formations in modern football. You have a back four defending, three midfielders linking defence to attack, and three forwards at the top. On paper it's simple. In practice, it's highly flexible — when a team has the ball, the full-backs push up to provide width, and the wingers cut inside to combine with the striker and midfield. Barcelona's golden era under Guardiola used a 4-3-3 that was really a 4-6-0 in possession — no traditional striker, just Messi drifting as a false nine. The three midfielders are the engine room: one holding (sitting back), one box-to-box (running everywhere), and one creative (finding the passes that unlock defences)."
+  },
+
+  "4-4-2": {
+    "short_definition": "A traditional formation with four defenders, four midfielders in a flat or diamond shape, and two forwards typically playing as a strike partnership.",
+    "when_VAR_reviews": "Not applicable — formations are tactics, not rule decisions.",
+    "common_misconceptions": [
+      "The classic flat 4-4-2 has largely fallen out of favour at the top level because four midfielders in a flat line are outnumbered by modern three-man midfields.",
+      "A 4-4-2 diamond (with a defensive midfielder at the base, two central midfielders, and an attacking midfielder at the top) is a different tactical shape with different strengths.",
+      "The two strikers in a 4-4-2 often have distinct roles — one holds up play, one runs in behind — rather than both doing the same job."
+    ],
+    "plain_english": "The 4-4-2 is the classic formation — the shape your dad watched and probably used on FIFA. Four at the back, four in the middle, two up front. It was dominant in English football for decades because the two strikers give you a constant physical presence in the opponent's box and a partnership that creates space for each other. The challenge in modern football is that the flat 4-4-2 often gets overrun in midfield: three midfielders beat four in a flat line by outnumbering them in central positions. So you see fewer flat 4-4-2s at the top level now, though a 4-4-2 with the midfielders in a diamond is still used effectively by teams who want an attacking midfielder pulling the strings."
+  },
+
+  "3-5-2": {
+    "short_definition": "A formation using three central defenders, five midfielders (including two attacking wing-backs who provide width on both flanks), and two strikers.",
+    "when_VAR_reviews": "Not applicable — formations are tactics, not rule decisions.",
+    "common_misconceptions": [
+      "The wing-backs in a 3-5-2 are NOT regular midfielders — they need to do the defensive work of a full-back AND the attacking work of a winger, making it one of the most demanding roles in football.",
+      "When defending, a 3-5-2 often becomes a 5-3-2 as the wing-backs drop back to form a back five.",
+      "The three central defenders create a numerical advantage at the back, allowing the wing-backs to push high without leaving gaps."
+    ],
+    "plain_english": "The 3-5-2 is a formation built around the wing-backs. Instead of four defenders, you play with three central defenders who hold the defensive line together — and then two wing-backs who are given license to bomb up and down the flanks for the entire match. Those wing-backs essentially do two full-time jobs: attacking wide support when you have the ball, and getting back to form a flat five when you don't. Antonio Conte's teams have mastered this — it creates width in attack and a solid defensive block when needed. The five-player midfield in the middle creates numerical advantage in the zones where games are won and lost. It's physically demanding on the wing-backs, which is why they're often substituted before the end of games."
+  }
+}
