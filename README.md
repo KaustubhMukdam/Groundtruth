@@ -58,7 +58,7 @@ The key difference from a chatbot: **Granite decides what to do next**. It picks
 
 | Layer | Technology | Why |
 |-------|-----------|-----|
-| LLM | IBM Granite (`granite-13b-instruct-v2`) | Required for challenge + excellent at structured instruction-following; reliable for self-critique |
+| LLM | IBM Granite (`granite-4-0-11-small`) | Available on free tier (Dallas/US-South) + excellent at structured instruction-following; reliable for self-critique |
 | Agent pipeline | Langflow | Visual agentic pipeline, tool nodes, decision routing, exportable JSON for judges |
 | Football data | football-data.org API (free) | Live + historical World Cup match data, clean REST API |
 | Rules data | Local JSON (`football_rules.json`) | FIFA laws don't change mid-tournament; local = zero latency |
@@ -70,7 +70,7 @@ The key difference from a chatbot: **Granite decides what to do next**. It picks
 
 ## IBM tools used
 
-- **IBM Granite**, `granite-13b-instruct-v2` via watsonx.ai. Used in 3 places: tool selection, explanation generation, and self-critique. Chosen for its reliable instruction-following behaviour on structured prompts.
+- **IBM Granite**, `ibm/granite-4-0-11-small` via watsonx.ai (Dallas/US-South). Used in 3 places: tool selection, explanation generation, and self-critique. Selected as the best available IBM Granite instruct model on the free tier.
 - **Langflow**, Visual agentic pipeline that orchestrates all 3 Granite calls + tool nodes. The full pipeline is exported as `/langflow/Groundtruth_agent_flow.json`, importable directly.
 
 ---

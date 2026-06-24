@@ -26,6 +26,7 @@ from typing import Any
 
 import httpx
 from fastapi import HTTPException
+from pydantic import ValidationError
 
 from backend.models.schemas import MatchInfo
 
@@ -194,16 +195,22 @@ class FootballAPIClient:
         matches = []
         for raw in data.get("matches", []):
             try:
+                # Knockout stage matches have null team names until opponents are decided.
+                # Use "TBD" so Pydantic doesn't reject the record — these still show
+                # in the dropdown so fans can select the match slot.
+                home_name = (raw.get("homeTeam") or {}).get("name") or "TBD"
+                away_name = (raw.get("awayTeam") or {}).get("name") or "TBD"
+
                 matches.append(
                     MatchInfo(
                         id=str(raw["id"]),
-                        home_team=raw["homeTeam"]["name"],
-                        away_team=raw["awayTeam"]["name"],
+                        home_team=home_name,
+                        away_team=away_name,
                         date=raw["utcDate"][:10],  # ISO date only
                         status=raw["status"],
                     )
                 )
-            except (KeyError, TypeError) as e:
+            except (KeyError, TypeError, ValidationError) as e:
                 logger.warning("Skipping malformed match record: %s — %s", raw.get("id"), e)
 
         logger.info("Fetched %d matches from football-data.org.", len(matches))

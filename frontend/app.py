@@ -249,7 +249,7 @@ with st.sidebar:
 
         **Built for:** IBM SkillsBuild AI Builders Challenge 2026
 
-        **IBM tools:** Granite `granite-13b-instruct-v2` · Langflow
+        **IBM tools:** Granite `granite-4-0-11-small` · Langflow
         """
     )
     st.divider()
