@@ -152,54 +152,55 @@ def run_agent(question: str, match_id: str | None = None) -> AskResponse:
     """
     langflow_url, flow_id = _get_langflow_config()
 
-    # ── Dev mode: Langflow not configured ──────────────────────────────────
-    if not langflow_url or not flow_id:
+    # ── Priority 1: Langflow connected mode ────────────────────────────────
+    # If Langflow URL and Flow ID are configured, use the visual pipeline.
+    if langflow_url and flow_id and "your_langflow_flow_id_here" not in flow_id:
+        endpoint = f"{langflow_url.rstrip('/')}/api/v1/run/{flow_id}"
+        payload = {
+            "input_value": question,
+            "output_type": "chat",
+            "input_type": "chat",
+            "tweaks": {"match_id": match_id or ""},
+        }
+        try:
+            logger.info("Calling Langflow: POST %s (match_id=%s)", endpoint, match_id)
+            with httpx.Client(timeout=LANGFLOW_DEFAULT_TIMEOUT) as client:
+                response = client.post(endpoint, json=payload)
+                response.raise_for_status()
+                data = response.json()
+                logger.info("Langflow responded successfully.")
+                return _parse_langflow_response(data)
+        except httpx.ConnectError:
+            logger.warning(
+                "Langflow is not reachable at %s. Falling back to Python agent.", endpoint
+            )
+        except httpx.HTTPStatusError as e:
+            logger.error("Langflow HTTP %d. Falling back to Python agent.", e.response.status_code)
+        except httpx.RequestError as e:
+            logger.error("Langflow request error: %s. Falling back to Python agent.", e)
+
+    # ── Priority 2: Direct Python Granite agent ────────────────────────────
+    # When Langflow is not running (or Phase 2 building), use the Python
+    # implementation of the same pipeline. Requires IBM_API_KEY + IBM_PROJECT_ID.
+    from backend.services import granite_agent
+
+    if granite_agent._is_granite_configured():
         logger.info(
-            "Langflow not configured (LANGFLOW_URL=%s, LANGFLOW_FLOW_ID=%s). "
-            "Returning mock response.",
-            langflow_url,
-            flow_id,
+            "Langflow not configured or unreachable. "
+            "Running Granite pipeline directly via Python agent."
         )
-        return _MOCK_RESPONSE
+        try:
+            return granite_agent.run_pipeline(question=question, match_id=match_id)
+        except Exception as e:
+            logger.error(
+                "Python Granite agent failed: %s — falling back to mock.", e, exc_info=True
+            )
 
-    # ── Connected mode: call Langflow pipeline ─────────────────────────────
-    endpoint = f"{langflow_url.rstrip('/')}/api/v1/run/{flow_id}"
-    payload = {
-        "input_value": question,
-        "output_type": "chat",
-        "input_type": "chat",
-        "tweaks": {
-            # Pass match_id as a tweak so the pipeline can use it in tool calls
-            # The exact tweak key depends on the Langflow component name —
-            # TODO (Phase 2): update this key once the pipeline is named
-            "match_id": match_id or "",
-        },
-    }
-
-    try:
-        logger.info("Calling Langflow: POST %s (match_id=%s)", endpoint, match_id)
-        with httpx.Client(timeout=LANGFLOW_DEFAULT_TIMEOUT) as client:
-            response = client.post(endpoint, json=payload)
-            response.raise_for_status()
-            data = response.json()
-            logger.info("Langflow responded successfully.")
-            return _parse_langflow_response(data)
-
-    except httpx.ConnectError:
-        logger.warning(
-            "Langflow is not reachable at %s. Is it running? Returning mock response.",
-            endpoint,
-        )
-        return _MOCK_RESPONSE
-
-    except httpx.HTTPStatusError as e:
-        logger.error(
-            "Langflow returned HTTP %d: %s",
-            e.response.status_code,
-            e.response.text[:200],
-        )
-        return _MOCK_RESPONSE
-
-    except httpx.RequestError as e:
-        logger.error("Langflow request error: %s", e)
-        return _MOCK_RESPONSE
+    # ── Priority 3: Mock mode ──────────────────────────────────────────────
+    # Only reached when NEITHER Langflow NOR IBM credentials are configured.
+    # Useful for frontend/backend integration testing without any AI keys.
+    logger.warning(
+        "IBM_API_KEY not set and Langflow not configured. "
+        "Returning mock response. Set credentials in .env to get real answers."
+    )
+    return _MOCK_RESPONSE
