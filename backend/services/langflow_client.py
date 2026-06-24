@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 # Constants
 # ---------------------------------------------------------------------------
 
-LANGFLOW_DEFAULT_TIMEOUT = 30.0  # seconds — 3 Granite calls per request ~5–7s
+LANGFLOW_DEFAULT_TIMEOUT = 120.0  # seconds — 3 Granite calls per request ~5–7s
 
 
 # ---------------------------------------------------------------------------

@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 # Constants
 # ---------------------------------------------------------------------------
 
-GRANITE_MODEL_ID = "ibm/granite-4-0-11-small"
+GRANITE_MODEL_ID = "ibm/granite-4-h-small"  # Confirmed via watsonx.ai API supported models list
 AVAILABLE_TOOLS = ["get_match_events", "get_player_stats", "get_rule_definition"]
 
 # Similarity threshold for detecting a meaningful revision in self-critique.
@@ -482,6 +482,11 @@ def self_critique(draft_explanation: str) -> tuple[str, bool, str | None]:
         revised = model.generate_text(prompt=prompt).strip()
         logger.info("Self-critique complete. Revised length: %d chars.", len(revised))
 
+        # Handle suspicious / empty responses immediately
+        if len(revised) < 30:
+            logger.warning("Self-critique returned suspiciously short or empty string. Rejecting revision.")
+            return draft_explanation, False, None
+
         # Detect meaningful revision: significant character difference
         was_revised = abs(len(revised) - len(draft_explanation)) > REVISION_MIN_DIFF or (
             revised.lower() != draft_explanation.lower()
@@ -494,10 +499,7 @@ def self_critique(draft_explanation: str) -> tuple[str, bool, str | None]:
             logger.info("Self-critique produced a meaningful revision.")
         else:
             logger.info("Self-critique: original answer passed the WHY/grounded/clarity checks.")
-            # Use original if revised is suspiciously short or empty
-            if len(revised) < 30:
-                revised = draft_explanation
-                was_revised = False
+            revised = draft_explanation
 
         return revised, was_revised, revision_reason
 

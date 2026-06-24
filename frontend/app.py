@@ -94,7 +94,7 @@ def ask_agent(question: str, match_id: str | None) -> dict | None:
         response = requests.post(
             f"{BACKEND_URL}/ask",
             json=payload,
-            timeout=30,  # 3 Granite calls = up to ~7s; 30s leaves plenty of margin
+            timeout=120,  # 3 Granite calls = up to ~7s; 30s leaves plenty of margin
         )
         response.raise_for_status()
         return response.json()
@@ -249,7 +249,7 @@ with st.sidebar:
 
         **Built for:** IBM SkillsBuild AI Builders Challenge 2026
 
-        **IBM tools:** Granite `granite-4-0-11-small` · Langflow
+        **IBM tools:** Granite `granite-4-h-small` · Langflow
         """
     )
     st.divider()
